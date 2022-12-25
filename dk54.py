@@ -71,6 +71,7 @@ if __name__ == '__main__':
                 maxcount = max(maxcount, nodecount)
         dic[cur] = maxcount
         minnum = min(minnum, maxcount)
+        
     # 排序
     a = sorted(dic.items(), key=lambda x: (x[1], x[0]))
     res = ""
