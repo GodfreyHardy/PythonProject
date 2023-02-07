@@ -68,6 +68,7 @@ if __name__ == '__main__':
     print(dic)
     k = str(ti)+'#'+str(tj)
     print(dic[k])
+
 """
 0 0 -1
 0 10 0
