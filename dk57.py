@@ -11,6 +11,7 @@ array[i][j] = -1代表i行j列是阻隔物。
 现要求输出对应位置的网络信号值。
 """
 
+
 import queue
 if __name__ == '__main__':
     s = input()
