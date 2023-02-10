@@ -1,10 +1,21 @@
 
 """
-第二道是先给定一个字符串序列第一个字符串R第二个字符串就是BR第三个字符串就是RBBR
-就是第i个字符串等于第i-1个字符串取反加上第i-1个字符串：B取反就是R
-只有这两个字符然后他输入第几个字符串的第几个字符让你输出R输出red B输出blue
+【对称美学】
+题目描述
+对称就是最大的美学，现有一道关于对称字符串的美学。
+已知：
+第 1 个字符串：R
+第 2 个字符串：BR
+第 3 个字符串：RBBR
+第 4 个字符串：BRRBRBBR
+第 5 个字符串：RBBRBRRBBRRBRBBR
+相信你已经发现规律了，没错！
+就是第i个字符串 = 第i-1号字符串的取反 + 第i-1号字符串。
+取反即(R->B, B->R);
+现在告诉你 n 和 k ，让你求得第n个字符串的第k个字符是多少。
+(k的编号从0开始)
 """
-#
+#复杂度 2^n   1<=n<=64
 def generate(n):
     if n==1:
         return '1'
@@ -17,11 +28,25 @@ def generate(n):
             pre += '1'
     return pre + s
 
+#打表,动态规划计算f(n,m) 0<=m<=2^n-1
 
-#0 10 0110 10010110
+
+def f(n,m):
+    if n==1:
+        return 1
+    k = pow(2,n-1)
+    if m+1>k//2:
+        return 1-f(n,m-(k//2))
+    else:
+        return 1-f(n-1,m)
+    return 1
+
+#1 01 1001 01101001
 if __name__ == '__main__':
     n = int(input())
     m = int(input())
     k = generate(n)
-    print(len(k))
-    print(k[m-1])
+    print(k)
+    print(k[m])
+    t = f(n,m)
+    print(t)
