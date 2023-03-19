@@ -1,4 +1,3 @@
-
 """
 ■ 题目描述
 【单向链表中间节点】
@@ -30,10 +29,13 @@ if __name__ == '__main__':
     for i in range(n):
         s = input()
         s = s.split(' ')
-        dic[s[0]] = s[1]+'#'+s[2]
-    for i in range(n):
+        dic[s[0]] = s[1] + '#' + s[2]
+    # 并且可能存在一些节点不属于链表 need to fix the bug
+    while head in dic:
         val = dic[head].split('#')
         lt.append(val[0])
         head = val[1]
+        if val[1]=='-1':
+            break
     print(lt)
-    print(lt[n//2])
+    print(lt[n // 2])
