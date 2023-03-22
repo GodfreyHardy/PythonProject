@@ -54,7 +54,7 @@ if __name__ == '__main__':
         #y2 = y0+am
         bound = abs(x0)//b+2
         # print(bound)
-        minx = 21000000000
+        minx = x0
         for m in range(bound,bound-4,-1):
             if abs(x0-b*m) < minx:
                 minx = abs(x0-b*m)
