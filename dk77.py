@@ -20,6 +20,7 @@ output:
 8
 """
 
+
 if __name__ == '__main__':
     s = input().split(' ')
     m = int(s[0])
