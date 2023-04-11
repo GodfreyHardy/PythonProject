@@ -8,11 +8,32 @@
 【最多几个三角形】
 """
 
+max1 = -1
+
+def judge(dic):
+    num = []
+    for key in dic:
+        for i in range(dic[key]):
+            num.append(key)
+    if len(num) < 3:
+        return True
+    num.sort()
+    for i in range(len(num)-2):
+        for j in range(i+1,len(num)-1):
+            for k in range(j+1,len(num)):
+                if num[i]*num[i]+num[j]*num[j]==num[k]*num[k]:
+                    return False
+    return True
 def combine(dic,res,ans,num,begin):
-    if begin >= len(res):
-        ans.append(num)
+    global max1
+    if judge(dic):#bug
+        tmp = []
+        tmp.extend(num)
+        print(num)
+        max1 = max(max1,len(num))
+        ans.append(tmp)
         return ans
-    for i in range(len(res)):
+    for i in range(begin,len(res)):
         a = res[i][0]
         b = res[i][1]
         c = res[i][2]
@@ -20,7 +41,9 @@ def combine(dic,res,ans,num,begin):
             dic[a] -= 1
             dic[b] -= 1
             dic[c] -= 1
-            combine(dic,res,ans,num+1,i+1)
+            num.append([a,b,c])
+            combine(dic,res,ans,num,i+1)
+            num.pop()
             dic[a] += 1
             dic[b] += 1
             dic[c] += 1
@@ -34,7 +57,6 @@ def search(lt,begin,res,num):
             item = []
             item.extend(num)
             res.append(item)
-            #res.append(num[:])
             return res
     for i in range(begin,len(lt)):
         num.append(lt[i])
@@ -60,9 +82,9 @@ if __name__ == '__main__':
         print(res)
         print(dic)
         ans = []
-        combine(dic,res,ans,0,0)
+        combine(dic,res,ans,[],0)
         print(ans)
-        print(max(ans))
+        print(max1)
 """
 1
 7 3 4 5 6 5 12 13
