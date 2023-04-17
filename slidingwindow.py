@@ -33,3 +33,4 @@ if __name__ == '__main__':
         heapq.heappush(q, curtop)
         res.append(-curtop)
     print(res)
+
